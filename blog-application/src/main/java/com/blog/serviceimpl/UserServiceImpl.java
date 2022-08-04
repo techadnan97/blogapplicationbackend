@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto updateUser(UserDto userDto, Long id) {
 		User user = this.userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Not Found", "User", id));
+				.orElseThrow(() -> new ResourceNotFoundException("User", "ID", id));
 		user.setName(userDto.getName());
 		user.setEmail(userDto.getEmail());
 		user.setPassword(userDto.getPassword());
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(Long id) {
 		User user = this.userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Not Found", "User", id));
+				.orElseThrow(() -> new ResourceNotFoundException("User", "ID", id));
 		this.userRepository.delete(user);
 
 	}
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto getUserById(Long id) {
 		User user = this.userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Not Found", "User", id));
+				.orElseThrow(() -> new ResourceNotFoundException("User", "ID", id));
 		return this.mapper.map(user, UserDto.class);
 	}
 

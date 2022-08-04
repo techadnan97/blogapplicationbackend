@@ -2,6 +2,8 @@ package com.blog.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,12 +30,12 @@ public class UserController {
 	}
 
 	@PostMapping("/")
-	private ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+	private ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 		return new ResponseEntity<UserDto>(this.userServiceImpl.createUser(userDto), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	private ResponseEntity<UserDto> userUpdate(@RequestBody UserDto userDto,@PathVariable Long id) {
+	private ResponseEntity<UserDto> userUpdate(@Valid @RequestBody UserDto userDto, @PathVariable Long id) {
 		return new ResponseEntity<UserDto>(this.userServiceImpl.updateUser(userDto, id), HttpStatus.OK);
 	}
 
