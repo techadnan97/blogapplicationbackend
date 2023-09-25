@@ -27,5 +27,6 @@ public class UserDto {
 	private String password;
 	@NotBlank(message = "about can not be blank")
 	private String about;
+	private String role;
 
 }

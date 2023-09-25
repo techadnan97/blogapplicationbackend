@@ -12,17 +12,14 @@ import com.blog.payloads.CategoryDto;
 import com.blog.repository.CategoryRepository;
 import com.blog.service.CategoryService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-	private CategoryRepository categoryRepository;
-	private ModelMapper modelMapper;
-
-	public CategoryServiceImpl(CategoryRepository categoryRepository, ModelMapper modelMapper) {
-		super();
-		this.categoryRepository = categoryRepository;
-		this.modelMapper = modelMapper;
-	}
+	private final CategoryRepository categoryRepository;
+	private final ModelMapper modelMapper;
 
 	@Override
 	public CategoryDto createCategories(CategoryDto categoryDto) {

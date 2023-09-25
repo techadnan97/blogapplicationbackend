@@ -19,40 +19,40 @@ import com.blog.payloads.ApiSuccessResponse;
 import com.blog.payloads.CategoryDto;
 import com.blog.service.CategoryService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/category")
+@RequiredArgsConstructor
 public class CategoryController {
 
-	private CategoryService categoryService;
+	private final CategoryService categoryService;
 
-	public CategoryController(CategoryService categoryService) {
-		super();
-		this.categoryService = categoryService;
-	}
+	
 
 	@PostMapping("/")
-	private ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
+	private ResponseEntity<?> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
 		return new ResponseEntity<CategoryDto>(this.categoryService.createCategories(categoryDto), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	private ResponseEntity<CategoryDto> categoryUpdate(@Valid @RequestBody CategoryDto categoryDto,
+	private ResponseEntity<?> categoryUpdate(@Valid @RequestBody CategoryDto categoryDto,
 			@PathVariable Long id) {
 		return new ResponseEntity<CategoryDto>(this.categoryService.updateCategories(categoryDto, id), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	private ResponseEntity<CategoryDto> getCategory(@PathVariable Long id) {
+	private ResponseEntity<?> getCategory(@PathVariable Long id) {
 		return new ResponseEntity<CategoryDto>(this.categoryService.getCategory(id), HttpStatus.OK);
 	}
 
 	@GetMapping("/")
-	private ResponseEntity<List<CategoryDto>> getCategories() {
+	private ResponseEntity<?> getCategories() {
 		return new ResponseEntity<List<CategoryDto>>(this.categoryService.getCategories(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	private ResponseEntity<ApiSuccessResponse> deleteCategory(@PathVariable Long id) {
+	private ResponseEntity<?> deleteCategory(@PathVariable Long id) {
 		this.categoryService.deleteCategories(id);
 		return new ResponseEntity<ApiSuccessResponse>(new ApiSuccessResponse("User Sucessfully Deleted", true),
 				HttpStatus.OK);

@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class BlogApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(BlogApplication.class, args);
 	}
-	
-	@Bean
-	ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
+
+    @Bean
+    ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
 }

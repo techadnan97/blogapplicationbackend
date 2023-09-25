@@ -31,4 +31,10 @@ public class GlobalExceptionHandler {
 				HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(BadCredential.class)
+	private ResponseEntity<ResponseApi> badCredential(BadCredential badCredentials) {
+		return new ResponseEntity<ResponseApi>(new ResponseApi(badCredentials.getMessage(),
+				HttpStatus.BAD_REQUEST.value(), new Timestamp(System.currentTimeMillis())), HttpStatus.BAD_REQUEST);
+	}
+
 }
